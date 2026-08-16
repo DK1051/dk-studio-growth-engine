@@ -1,20 +1,47 @@
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
-export function scrollToId(id: string) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-}
-
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-export function useInView<T extends HTMLElement>(threshold = 0.15) {
+/**
+ * One-shot visibility hook. A single IntersectionObserver instance is shared by
+ * every element; each element is unobserved the moment it becomes visible, so
+ * nothing can re-fire. No scroll listeners, no rAF loops.
+ */
+let observer: IntersectionObserver | null = null;
+const callbacks = new WeakMap<Element, () => void>();
+
+function observe(el: Element, cb: () => void) {
+  if (typeof IntersectionObserver === "undefined") {
+    cb();
+    return () => {};
+  }
+  if (!observer) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          observer?.unobserve(e.target);
+          const fn = callbacks.get(e.target);
+          callbacks.delete(e.target);
+          fn?.();
+        }
+      },
+      { threshold: 0.12 },
+    );
+  }
+  callbacks.set(el, cb);
+  observer.observe(el);
+  return () => {
+    callbacks.delete(el);
+    observer?.unobserve(el);
+  };
+}
+
+export function useInView<T extends HTMLElement>() {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
 
-  // Anything already inside the viewport on mount shows immediately, so the
-  // above-the-fold content is never blank on a fresh load.
+  // Already inside the viewport at mount: mark visible before paint.
   useIsomorphicLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -24,21 +51,10 @@ export function useInView<T extends HTMLElement>(threshold = 0.15) {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setInView(true);
-            io.disconnect();
-          }
-        }
-      },
-      { threshold },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [threshold]);
+    if (!el || inView) return;
+    return observe(el, () => setInView(true));
+  }, [inView]);
+
   return { ref, inView };
 }
 
@@ -65,7 +81,7 @@ export function Reveal({
 
 /** Hand-drawn orange underline that draws on when scrolled into view. */
 export function Underline({ children }: { children: ReactNode }) {
-  const { ref, inView } = useInView<HTMLSpanElement>(0.4);
+  const { ref, inView } = useInView<HTMLSpanElement>();
   return (
     <span ref={ref} className="relative inline-block">
       {children}
