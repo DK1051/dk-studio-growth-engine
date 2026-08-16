@@ -1,24 +1,45 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import Nav from "@/components/dk/Nav";
+import Hero from "@/components/dk/Hero";
+import About from "@/components/dk/About";
+import Work from "@/components/dk/Work";
+import Pricing, { type ServiceValue } from "@/components/dk/Pricing";
+import Contact from "@/components/dk/Contact";
+import Footer from "@/components/dk/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "DK Studio — Website audits, redesign, and build";
+const description =
+  "We audit, redesign, and build websites that perform. A clear audit, honest insight, and design that converts.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const [service, setService] = useState<ServiceValue>("free-audit");
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <Work />
+        <Pricing onSelect={setService} />
+        <Contact service={service} setService={setService} />
+      </main>
+      <Footer />
     </div>
   );
 }
