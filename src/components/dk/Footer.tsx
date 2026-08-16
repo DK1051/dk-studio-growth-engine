@@ -26,13 +26,16 @@ export default function Footer() {
         <ul className="mt-10 flex flex-wrap items-center justify-center gap-8 border-t border-white/10 pt-8 sm:justify-start">
           {links.map((l) => (
             <li key={l.id}>
-              <button
-                type="button"
-                onClick={() => scrollToId(l.id)}
-                className="min-h-11 text-[14px] opacity-80 transition-opacity hover:opacity-100"
+              <a
+                href={`#${l.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId(l.id);
+                }}
+                className="inline-flex min-h-11 items-center rounded-md px-1 text-[14px] opacity-80 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
               >
                 {l.label}
-              </button>
+              </a>
             </li>
           ))}
         </ul>
