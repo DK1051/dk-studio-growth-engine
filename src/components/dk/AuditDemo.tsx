@@ -145,7 +145,7 @@ export default function AuditDemo() {
       }}
     >
       {/* Pinned badge, visible on every tab */}
-      <div className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground sm:right-5 sm:top-5">
+      <div className="mb-3 inline-block rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground sm:absolute sm:right-5 sm:top-5 sm:z-10 sm:mb-0">
         Sample audit · demo data
       </div>
 
