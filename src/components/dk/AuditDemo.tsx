@@ -68,7 +68,7 @@ function VerdePreview({
           <span>Philosophy</span>
           <span>Journal</span>
           <span>About</span>
-          <span>Cart (0)</span>
+          <span className="whitespace-nowrap">Cart (0)</span>
         </span>
       </div>
 
