@@ -3,8 +3,8 @@ import { Arrow, Reveal, Underline, scrollToId } from "./primitives";
 
 export default function Hero() {
   return (
-    <section id="top" className="mx-auto max-w-[1280px] px-5 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-16">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(320px,460px)_1fr] lg:gap-14">
+    <section id="top" className="mx-auto max-w-[1280px] px-5 pb-14 pt-6 sm:px-8 sm:pb-20 sm:pt-10">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(320px,460px)_1fr] lg:gap-14">
         <div>
           <Reveal>
             <p className="text-[14px] text-muted-foreground">Audit. Insight. Redesign. Launch.</p>
