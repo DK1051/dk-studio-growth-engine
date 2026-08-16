@@ -1,4 +1,4 @@
-import { scrollToId } from "./primitives";
+
 
 const EMAIL = "danielkimdesignco@gmail.com";
 const links = [

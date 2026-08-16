@@ -1,5 +1,5 @@
 import AuditDemo from "./AuditDemo";
-import { Arrow, Reveal, Underline, scrollToId } from "./primitives";
+import { Arrow, Reveal, Underline } from "./primitives";
 
 export default function Hero() {
   return (
