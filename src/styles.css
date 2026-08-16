@@ -138,6 +138,18 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #top,
+  #work,
+  #about,
+  #pricing,
+  #contact {
+    scroll-margin-top: 72px;
+  }
+
   * {
     border-color: var(--color-border);
   }
@@ -214,6 +226,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
