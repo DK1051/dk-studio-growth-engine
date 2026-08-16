@@ -10,12 +10,12 @@ export default function Hero() {
             <p className="text-[14px] text-muted-foreground">Audit. Insight. Redesign. Launch.</p>
           </Reveal>
           <Reveal delay={60}>
-            <h1 className="mt-6 text-[clamp(40px,7vw,66px)] text-foreground">
+            <h1 className="mt-4 text-[clamp(38px,6.4vw,66px)] text-foreground">
               We audit. We redesign. We build what <Underline>performs</Underline>.
             </h1>
           </Reveal>
           <Reveal delay={120}>
-            <p className="mt-7 max-w-[46ch] text-[16px] leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-muted-foreground">
               Our system turns guesswork into growth. A clear audit, honest insight, and design that
               converts.
             </p>
@@ -27,7 +27,7 @@ export default function Hero() {
                 e.preventDefault();
                 scrollToId("contact");
               }}
-              className="arrow-nudge mt-8 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="arrow-nudge mt-6 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               Start your free audit
               <Arrow />
