@@ -63,25 +63,30 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  /* DK Studio brand tokens */
+  --background: oklch(0.947 0.019 84.6); /* #F4EEE4 cream */
+  --foreground: oklch(0.222 0.011 45); /* #171310 ink */
+  --card: oklch(0.966 0.015 88); /* #FAF6ED */
+  --card-foreground: oklch(0.222 0.011 45);
+  --popover: oklch(0.966 0.015 88);
+  --popover-foreground: oklch(0.222 0.011 45);
+  --primary: oklch(0.549 0.184 39.2); /* #CC4310 button fill */
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.966 0.015 88);
+  --secondary-foreground: oklch(0.222 0.011 45);
+  --muted: oklch(0.93 0.016 84);
+  --muted-foreground: oklch(0.494 0.019 70); /* #6B6459 */
+  --accent: oklch(0.596 0.192 38.5); /* #E8541D */
+  --accent-foreground: oklch(1 0 0);
+  --ink-footer: oklch(0.222 0.011 45);
+  --footer-foreground: oklch(0.938 0.014 84); /* #F2EDE2 */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.222 0.011 45 / 12%);
+  --input: oklch(0.222 0.011 45 / 22%);
+  --ring: oklch(0.596 0.192 38.5);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
