@@ -61,7 +61,7 @@ export default function Nav() {
         >
           Book a free audit
           <Arrow />
-        </button>
+        </a>
       </nav>
     </header>
   );
