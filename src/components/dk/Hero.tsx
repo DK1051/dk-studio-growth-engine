@@ -21,14 +21,17 @@ export default function Hero() {
             </p>
           </Reveal>
           <Reveal delay={180}>
-            <button
-              type="button"
-              onClick={() => scrollToId("contact")}
-              className="arrow-nudge mt-8 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background"
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToId("contact");
+              }}
+              className="arrow-nudge mt-8 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               Start your free audit
               <Arrow />
-            </button>
+            </a>
             <p className="mt-3 text-[13px] text-muted-foreground">Free. Nothing to buy.</p>
           </Reveal>
         </div>
