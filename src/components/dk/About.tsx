@@ -18,7 +18,7 @@ export default function About() {
           <Reveal>
             {/* Warm-tone placeholder block until a real photo is supplied */}
             <div
-              className="aspect-4/5 w-full rounded-xl border border-border"
+              className="aspect-3/4 max-h-[520px] w-full rounded-xl border border-border object-cover"
               style={{
                 background:
                   "linear-gradient(160deg, oklch(0.9 0.03 76), oklch(0.78 0.035 62) 55%, oklch(0.63 0.04 52))",
