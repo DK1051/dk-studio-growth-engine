@@ -68,7 +68,7 @@ function VerdePreview({
           <span>Philosophy</span>
           <span>Journal</span>
           <span>About</span>
-          <span>Cart (0)</span>
+          <span className="whitespace-nowrap">Cart (0)</span>
         </span>
       </div>
 
@@ -145,7 +145,7 @@ export default function AuditDemo() {
       }}
     >
       {/* Pinned badge, visible on every tab */}
-      <div className="absolute right-3 top-3 z-10 rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground sm:right-5 sm:top-5">
+      <div className="mb-3 inline-block rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground sm:absolute sm:right-5 sm:top-5 sm:z-10 sm:mb-0">
         Sample audit · demo data
       </div>
 
@@ -221,7 +221,7 @@ export default function AuditDemo() {
               <Hotspot top="22%" left="46%" size={18} />
               <Hotspot top="40%" left="66%" size={20} />
               <Hotspot top="58%" left="34%" size={16} />
-              <span className="absolute left-[40%] top-[48%] hidden rounded-md bg-foreground px-3 py-2 text-[10px] leading-snug text-background sm:block">
+              <span className="absolute right-4 top-[14%] hidden max-w-[46%] rounded-md bg-foreground px-3 py-2 text-[10px] leading-snug text-background sm:block">
                 High attention.
                 <br />
                 42% of users focus here for ~2.8s
