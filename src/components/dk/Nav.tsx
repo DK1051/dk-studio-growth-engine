@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Arrow, scrollToId } from "./primitives";
+import { Arrow } from "./primitives";
 
 const links = [
   { label: "Work", id: "work" },
@@ -9,29 +8,16 @@ const links = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={`sticky top-0 z-50 w-full border-b transition-colors ${
-        scrolled ? "border-border bg-background/90 backdrop-blur" : "border-transparent bg-background"
-      }`}
-    >
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur">
       <nav className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-4 px-5 sm:px-8">
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="wordmark min-h-11 text-[15px] text-foreground sm:text-[18px]"
+        <a
+          href="#top"
+          className="wordmark inline-flex min-h-11 items-center text-[15px] text-foreground sm:text-[18px]"
           aria-label="DK Studio, back to top"
         >
           DK Studio
-        </button>
+        </a>
 
         <ul className="hidden items-center gap-9 md:flex">
           {links.map((l) => (
