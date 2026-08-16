@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
@@ -7,9 +7,21 @@ export function scrollToId(id: string) {
   el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
 }
 
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 export function useInView<T extends HTMLElement>(threshold = 0.15) {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
+
+  // Anything already inside the viewport on mount shows immediately, so the
+  // above-the-fold content is never blank on a fresh load.
+  useIsomorphicLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) setInView(true);
+  }, []);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
