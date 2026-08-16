@@ -1,4 +1,4 @@
-import { Arrow, Check, Reveal, SectionLabel, scrollToId } from "./primitives";
+import { Arrow, Check, Reveal, SectionLabel } from "./primitives";
 
 export type ServiceValue = "free-audit" | "standard-landing" | "full-rebuild" | "something-else";
 
@@ -86,12 +86,9 @@ export default function Pricing({ onSelect }: { onSelect: (s: ServiceValue) => v
                   ))}
                 </ul>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    onSelect(t.service);
-                    scrollToId("contact");
-                  }}
+                <a
+                  href="#contact"
+                  onClick={() => onSelect(t.service)}
                   className={`arrow-nudge mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-md border text-[15px] font-medium transition-colors ${
                     t.featured
                       ? "border-primary bg-primary text-primary-foreground"
@@ -100,7 +97,7 @@ export default function Pricing({ onSelect }: { onSelect: (s: ServiceValue) => v
                 >
                   Get started
                   <Arrow />
-                </button>
+                </a>
               </div>
             </Reveal>
           ))}

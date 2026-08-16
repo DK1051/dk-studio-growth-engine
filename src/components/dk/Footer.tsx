@@ -1,4 +1,4 @@
-import { scrollToId } from "./primitives";
+
 
 const EMAIL = "danielkimdesignco@gmail.com";
 const links = [
@@ -28,10 +28,6 @@ export default function Footer() {
             <li key={l.id}>
               <a
                 href={`#${l.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId(l.id);
-                }}
                 className="inline-flex min-h-11 items-center rounded-md px-1 text-[14px] opacity-80 transition-opacity hover:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
               >
                 {l.label}
