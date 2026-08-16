@@ -23,10 +23,6 @@ export default function Hero() {
           <Reveal delay={180}>
             <a
               href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToId("contact");
-              }}
               className="arrow-nudge mt-6 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               Start your free audit

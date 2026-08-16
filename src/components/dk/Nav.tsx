@@ -38,11 +38,6 @@ export default function Nav() {
             <li key={l.id}>
               <a
                 href={`#${l.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId(l.id);
-                  history.replaceState(null, "", `#${l.id}`);
-                }}
                 className="inline-flex min-h-11 items-center rounded-md px-1 text-[15px] text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 {l.label}
@@ -53,10 +48,6 @@ export default function Nav() {
 
         <a
           href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToId("contact");
-          }}
           className="arrow-nudge inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-[14px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
         >
           Book a free audit
