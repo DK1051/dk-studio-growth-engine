@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode } from "react";
 import { Check } from "./primitives";
+import { Card, Meter, ScoreDial } from "./panelBits";
 
 const tabs = [
   { n: "01", label: "Audit" },
@@ -7,46 +8,6 @@ const tabs = [
   { n: "03", label: "Redesign" },
   { n: "04", label: "Launch" },
 ];
-
-function Card({ title, children }: { title: string; children: ReactNode }) {
-  return (
-    <div className="rounded-xl border border-border bg-card p-4">
-      <p className="mb-3 text-[13px] font-semibold text-foreground">{title}</p>
-      {children}
-    </div>
-  );
-}
-
-function Meter({ label, value, delay = 0 }: { label: string; value: number; delay?: number }) {
-  return (
-    <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-      <span className="w-[74px] shrink-0">{label}</span>
-      <span className="h-[3px] flex-1 overflow-hidden rounded-full bg-foreground/10">
-        <span
-          className="meter-grow block h-full rounded-full bg-accent"
-          style={{ width: `${value}%`, animationDelay: `${delay}ms` }}
-        />
-      </span>
-      <span className="w-6 text-right tabular-nums text-foreground">{value}</span>
-    </div>
-  );
-}
-
-/** Score dial with a conic progress ring. */
-function ScoreDial({ value }: { value: number }) {
-  return (
-    <div
-      className="relative flex size-14 shrink-0 items-center justify-center rounded-full"
-      style={{
-        background: `conic-gradient(var(--accent) ${value * 3.6}deg, oklch(0.222 0.011 45 / 10%) 0deg)`,
-      }}
-    >
-      <div className="flex size-[46px] items-center justify-center rounded-full bg-card">
-        <span className="font-display text-[18px] leading-none text-foreground">{value}</span>
-      </div>
-    </div>
-  );
-}
 
 function Hotspot({
   top,
@@ -168,8 +129,13 @@ export default function AuditDemo() {
       }}
     >
       {/* Pinned badge, visible on every tab */}
-      <div className="mb-3 inline-block rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground sm:absolute sm:right-5 sm:top-5 sm:z-10 sm:mb-0">
-        Sample audit · demo data
+      <div className="mb-3 sm:absolute sm:right-5 sm:top-5 sm:z-10 sm:mb-0 sm:text-right">
+        <span className="inline-block rounded-full border border-border bg-background/90 px-3 py-1 text-[11px] text-muted-foreground">
+          Sample audit · demo data
+        </span>
+        <p className="mt-1 hidden text-[10px] text-muted-foreground sm:block">
+          This is a sample. Run your own on the left.
+        </p>
       </div>
 
       <div

@@ -33,7 +33,7 @@ function Index() {
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <Nav />
       <main>
-        <Hero />
+        <Hero onBookAudit={() => setService("free-audit")} />
         <About />
         <Work />
         <Pricing onSelect={setService} />

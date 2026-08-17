@@ -1,7 +1,15 @@
-import AuditDemo from "./AuditDemo";
-import { Arrow, Enter, Underline } from "./primitives";
+import { useState } from "react";
 
-export default function Hero() {
+import type { ScanReport } from "@/lib/scanner/types";
+import AuditDemo from "./AuditDemo";
+import ScanModule, { ScanProgress } from "./ScanModule";
+import ScanReportView from "./ScanReportView";
+import { Enter, Underline } from "./primitives";
+
+export default function Hero({ onBookAudit }: { onBookAudit: () => void }) {
+  const [report, setReport] = useState<ScanReport | null>(null);
+  const [pending, setPending] = useState(false);
+
   return (
     <section id="top" className="mx-auto max-w-[1280px] px-5 pb-14 pt-6 sm:px-8 sm:pb-20 sm:pt-10">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(320px,460px)_1fr] lg:gap-14">
@@ -21,19 +29,20 @@ export default function Hero() {
             </p>
           </Enter>
           <Enter delay={180}>
-            <a
-              href="#contact"
-              className="arrow-nudge mt-6 inline-flex min-h-12 items-center gap-3 rounded-md bg-foreground px-6 text-[15px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            >
-              Start your free audit
-              <Arrow />
-            </a>
-            <p className="mt-3 text-[13px] text-muted-foreground">Free. Nothing to buy.</p>
+            <ScanModule onReport={setReport} onPending={setPending} />
           </Enter>
         </div>
 
         <Enter delay={120}>
-          <AuditDemo />
+          {pending ? (
+            <div className="relative rounded-2xl border border-border bg-gradient-to-b from-card/90 to-card/55 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_36px_88px_-48px_rgba(23,19,16,0.55),0_14px_32px_-22px_rgba(23,19,16,0.3)] sm:p-5">
+              <ScanProgress />
+            </div>
+          ) : report ? (
+            <ScanReportView report={report} onReset={() => setReport(null)} onBookAudit={onBookAudit} />
+          ) : (
+            <AuditDemo />
+          )}
         </Enter>
       </div>
     </section>
