@@ -16,15 +16,13 @@ export default function About() {
 
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,440px)_1fr] lg:gap-16">
           <Reveal>
-            {/* Warm-tone placeholder block until a real photo is supplied */}
-            <div
+            <img
+              src="/about-studio.jpg"
+              alt="DK Studio workspace: laptop with the DK monogram, wireframe sketches, and afternoon light"
+              width={880}
+              height={1252}
+              loading="lazy"
               className="aspect-3/4 max-h-[520px] w-full rounded-xl border border-border object-cover"
-              style={{
-                background:
-                  "linear-gradient(160deg, oklch(0.9 0.03 76), oklch(0.78 0.035 62) 55%, oklch(0.63 0.04 52))",
-              }}
-              role="img"
-              aria-label="Studio photograph placeholder"
             />
           </Reveal>
 

@@ -17,14 +17,33 @@ function Card({ title, children }: { title: string; children: ReactNode }) {
   );
 }
 
-function Meter({ label, value }: { label: string; value: number }) {
+function Meter({ label, value, delay = 0 }: { label: string; value: number; delay?: number }) {
   return (
     <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
       <span className="w-[74px] shrink-0">{label}</span>
-      <span className="h-[3px] flex-1 rounded-full bg-foreground/10">
-        <span className="block h-full rounded-full bg-accent" style={{ width: `${value}%` }} />
+      <span className="h-[3px] flex-1 overflow-hidden rounded-full bg-foreground/10">
+        <span
+          className="meter-grow block h-full rounded-full bg-accent"
+          style={{ width: `${value}%`, animationDelay: `${delay}ms` }}
+        />
       </span>
       <span className="w-6 text-right tabular-nums text-foreground">{value}</span>
+    </div>
+  );
+}
+
+/** Score dial with a conic progress ring. */
+function ScoreDial({ value }: { value: number }) {
+  return (
+    <div
+      className="relative flex size-14 shrink-0 items-center justify-center rounded-full"
+      style={{
+        background: `conic-gradient(var(--accent) ${value * 3.6}deg, oklch(0.222 0.011 45 / 10%) 0deg)`,
+      }}
+    >
+      <div className="flex size-[46px] items-center justify-center rounded-full bg-card">
+        <span className="font-display text-[18px] leading-none text-foreground">{value}</span>
+      </div>
     </div>
   );
 }
@@ -44,7 +63,10 @@ function Hotspot({
     <span className="absolute flex items-center gap-2" style={{ top, left }}>
       <span className="relative flex items-center justify-center" style={{ width: size, height: size }}>
         <span className="hotspot-pulse absolute inset-0 rounded-full bg-accent/40" />
-        <span className="relative rounded-full bg-accent" style={{ width: size * 0.55, height: size * 0.55 }} />
+        <span
+          className="relative rounded-full bg-accent shadow-[0_0_12px_oklch(0.596_0.192_38.5/0.55)]"
+          style={{ width: size * 0.55, height: size * 0.55 }}
+        />
       </span>
       {pct ? <span className="text-[11px] font-medium text-foreground">{pct}</span> : null}
     </span>
@@ -90,12 +112,13 @@ function VerdePreview({
           </span>
         </div>
 
-        {/* Product area approximated with neutral shapes */}
-        <div className="relative flex items-end justify-center gap-2 rounded-lg bg-foreground/[0.04] p-4">
-          <div className="h-20 w-8 rounded-t-full rounded-b-sm bg-foreground/15" />
-          <div className="h-24 w-9 rounded-md bg-foreground/45" />
-          <div className="h-14 w-10 rounded-b-xl rounded-t-md bg-foreground/10" />
-          <div className="absolute bottom-2 left-1/2 h-2 w-3/4 -translate-x-1/2 rounded-sm bg-foreground/10" />
+        {/* Product area approximated with warm-toned shapes */}
+        <div className="relative flex items-end justify-center gap-2 overflow-hidden rounded-lg bg-gradient-to-b from-foreground/[0.04] to-foreground/[0.09] p-4">
+          <div className="absolute -right-4 -top-6 size-24 rounded-full bg-accent/[0.07] blur-xl" />
+          <div className="h-20 w-8 rounded-t-full rounded-b-sm bg-[oklch(0.82_0.045_78)] shadow-sm" />
+          <div className="h-24 w-9 rounded-md bg-[oklch(0.38_0.025_50)] shadow-md" />
+          <div className="h-14 w-10 rounded-b-xl rounded-t-md bg-[oklch(0.88_0.035_84)] shadow-sm" />
+          <div className="absolute bottom-2 left-1/2 h-2 w-3/4 -translate-x-1/2 rounded-sm bg-foreground/15 blur-[2px]" />
         </div>
       </div>
 
@@ -138,7 +161,7 @@ export default function AuditDemo() {
       ref={frameRef}
       onMouseMove={onMove}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-      className="relative rounded-2xl border border-border bg-card/70 p-3 shadow-[0_24px_60px_-40px_rgba(23,19,16,0.45)] sm:p-5"
+      className="relative rounded-2xl border border-border bg-gradient-to-b from-card/90 to-card/55 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_36px_88px_-48px_rgba(23,19,16,0.55),0_14px_32px_-22px_rgba(23,19,16,0.3)] sm:p-5"
       style={{
         transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transition: "transform 300ms ease-out",
@@ -179,14 +202,12 @@ export default function AuditDemo() {
             <div className="flex w-full shrink-0 flex-col gap-3 lg:w-[240px]">
               <Card title="Audit score">
                 <div className="flex items-center gap-4">
-                  <div className="flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-accent">
-                    <span className="font-display text-[18px] leading-none text-foreground">62</span>
-                  </div>
+                  <ScoreDial value={62} />
                   <div className="flex-1 space-y-1.5">
                     <Meter label="Clarity" value={64} />
-                    <Meter label="Trust" value={58} />
-                    <Meter label="Conversion" value={52} />
-                    <Meter label="Performance" value={46} />
+                    <Meter label="Trust" value={58} delay={80} />
+                    <Meter label="Conversion" value={52} delay={160} />
+                    <Meter label="Performance" value={46} delay={240} />
                   </div>
                 </div>
                 <p className="mt-2 text-[11px] text-muted-foreground">Score 62 / 100</p>

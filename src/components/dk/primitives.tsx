@@ -26,7 +26,9 @@ function observe(el: Element, cb: () => void) {
           fn?.();
         }
       },
-      { threshold: 0.12 },
+      // Generous rootMargin so sections reveal ~500px before they enter the
+      // viewport — long smooth scrolls never pass through blank sections.
+      { threshold: 0, rootMargin: "500px 0px 500px 0px" },
     );
   }
   callbacks.set(el, cb);
@@ -74,6 +76,27 @@ export function Reveal({
       className={`reveal ${inView ? "is-in" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * CSS-only entrance for above-the-fold content (hero). Plays as soon as
+ * styles load — no JS, no hydration wait, so the top of the page is never
+ * blank while the bundle downloads.
+ */
+export function Enter({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  return (
+    <div className={`enter ${className}`} style={{ animationDelay: `${delay}ms` }}>
       {children}
     </div>
   );
