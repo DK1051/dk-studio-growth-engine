@@ -186,6 +186,23 @@
   font-weight: 400;
 }
 
+/* Third typographic voice: editorial serif caps for nav, labels, and small
+   headings — kills the default-sans template feel between display and body. */
+@utility label-serif {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-weight: 500;
+}
+
+/* Warm italic serif for lede lines under headlines. */
+@utility lede {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 @utility reveal {
   opacity: 0;
   transform: translateY(14px);

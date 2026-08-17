@@ -24,7 +24,7 @@ export default function Nav() {
             <li key={l.id}>
               <a
                 href={`#${l.id}`}
-                className="inline-flex min-h-11 items-center rounded-md px-1 text-[15px] text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="label-serif inline-flex min-h-11 items-center rounded-md px-1 text-[13px] text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
                 {l.label}
               </a>
@@ -34,7 +34,7 @@ export default function Nav() {
 
         <a
           href="#contact"
-          className="arrow-nudge inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-[14px] font-medium text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
+          className="arrow-nudge label-serif inline-flex min-h-11 items-center gap-2 rounded-md bg-foreground px-4 py-2.5 text-[12.5px] text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:px-5"
         >
           Book a free audit
           <Arrow />

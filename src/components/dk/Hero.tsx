@@ -15,7 +15,7 @@ export default function Hero({ onBookAudit }: { onBookAudit: () => void }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(320px,460px)_1fr] lg:gap-14">
         <div>
           <Enter>
-            <p className="text-[14px] text-muted-foreground">Audit. Insight. Redesign. Launch.</p>
+            <p className="label-serif text-[12px] text-muted-foreground">Audit. Insight. Redesign. Launch.</p>
           </Enter>
           <Enter delay={60}>
             <h1 className="mt-4 text-[clamp(38px,6.4vw,66px)] text-foreground">
@@ -23,7 +23,7 @@ export default function Hero({ onBookAudit }: { onBookAudit: () => void }) {
             </h1>
           </Enter>
           <Enter delay={120}>
-            <p className="mt-5 max-w-[46ch] text-[16px] leading-relaxed text-muted-foreground">
+            <p className="lede mt-5 max-w-[44ch] text-[18px] leading-relaxed text-foreground/80">
               Our system turns guesswork into growth. A clear audit, honest insight, and design that
               converts.
             </p>

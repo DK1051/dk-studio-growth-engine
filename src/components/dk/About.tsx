@@ -33,7 +33,7 @@ export default function About() {
               </h2>
             </Reveal>
             <Reveal delay={120}>
-              <p className="mt-7 max-w-[54ch] text-[16px] leading-relaxed text-muted-foreground">
+              <p className="lede mt-7 max-w-[50ch] text-[19px] leading-relaxed text-foreground/85">
                 We help businesses turn their websites into real growth engines. Strategy, design, and
                 development, handled in one place.
               </p>

@@ -134,7 +134,7 @@ export function Underline({ children }: { children: ReactNode }) {
 
 export function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center gap-3 text-[13px] font-medium tracking-wide text-foreground">
+    <div className="label-serif flex items-center gap-3 text-[12px] text-foreground">
       <span className="size-2.5 rounded-full bg-accent" aria-hidden="true" />
       {children}
     </div>

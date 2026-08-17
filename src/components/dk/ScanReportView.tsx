@@ -252,6 +252,10 @@ export default function ScanReportView({
                       alt={`${report.profile?.name ?? "Business"} photo from its Google profile`}
                       className="aspect-square w-full rounded-lg border border-border object-cover"
                       loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = "none";
+                      }}
                     />
                   ))}
                 </div>

@@ -40,7 +40,7 @@ export default function Contact({
               </h2>
             </Reveal>
             <Reveal delay={120}>
-              <p className="mt-7 max-w-[46ch] text-[16px] leading-relaxed text-muted-foreground">
+              <p className="lede mt-7 max-w-[42ch] text-[19px] leading-relaxed text-foreground/85">
                 Tell me about your goals and I&rsquo;ll show you how we can get there.
               </p>
               <p className="mt-4 max-w-[46ch] text-[16px] leading-relaxed text-muted-foreground">
